@@ -6,17 +6,15 @@ import service.*;
 
 public class LibraryController {
     public static void main(String[] args) {
-        // Repositories
         BookRepository bookRepo = new BookRepository();
         UserRepository userRepo = new UserRepository();
         LibrarianRepository librarianRepo = new LibrarianRepository();
 
-        // Services
         BookService bookService = new BookService(bookRepo);
         UserService userService = new UserService(userRepo);
         LibrarianService librarianService = new LibrarianService(librarianRepo);
 
-        // Hardcoded data
+        
         librarianService.addLibrarian(new Librarian("Admin", "lib001", "pass123"));
         System.out.println("Login: " + (librarianService.login("lib001", "pass123") ? "Success" : "Failed"));
         
