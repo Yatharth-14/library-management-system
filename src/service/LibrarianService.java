@@ -1,4 +1,4 @@
-package servicesLibraryManagement;
+package service;
 
 import entity.Librarian;
 import repository.LibrarianRepository;
