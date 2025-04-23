@@ -8,19 +8,17 @@ import java.util.Scanner;
 
 public class LibraryController {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
-        // Repositories
+        Scanner sc = new Scanner(System.in);
         BookRepository bookRepo = new BookRepository();
         UserRepository userRepo = new UserRepository();
         LibrarianRepository librarianRepo = new LibrarianRepository();
 
-        // Services
         BookService bookService = new BookService(bookRepo);
         UserService userService = new UserService(userRepo);
         LibrarianService librarianService = new LibrarianService(librarianRepo);
 
-        // Librarian Setup
+
         System.out.println("--- Librarian Registration ---");
         System.out.print("Enter Librarian Name: ");
         String libName = sc.nextLine();
@@ -30,7 +28,7 @@ public class LibraryController {
         String libPass = sc.nextLine();
         librarianService.addLibrarian(new Librarian(libName, libId, libPass));
 
-        // Login
+
         System.out.println("\n--- Librarian Login ---");
         System.out.print("Enter ID: ");
         String loginId = sc.nextLine();
@@ -52,7 +50,7 @@ public class LibraryController {
                 System.out.println("7. Exit");
                 System.out.print("Enter your choice: ");
                 int choice = sc.nextInt();
-                sc.nextLine(); // clear buffer
+                sc.nextLine();
 
                 switch (choice) {
                     case 1:
