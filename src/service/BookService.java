@@ -18,6 +18,10 @@ public class BookService {
         bookRepo.deleteBook(isbn);
     }
 
+    public boolean deleteBook(String isbn) {
+        return bookRepo.deleteBook(isbn);
+    }
+
     public Book[] getAllBooks() {
         return bookRepo.getAllBooks();
     }
