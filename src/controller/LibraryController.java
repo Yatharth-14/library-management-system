@@ -47,7 +47,8 @@ public class LibraryController {
                 System.out.println("6. Delete Book");
                 System.out.println("7. Issue book");
                 System.out.println("8. Return book");
-                System.out.println("9. Exit");
+                System.out.println("9. Show All users");
+                System.out.println("10. Exit");
                 System.out.print("Enter your choice: ");
                 int choice = sc.nextInt();
                 sc.nextLine();
@@ -138,6 +139,13 @@ public class LibraryController {
                         break;
 
                     case 9:
+                        System.out.println("--- List of All Users ---");
+                        for (User u : userService.getAllUsers()) {
+                            u.showUserInfo();
+                        }
+                        break;
+
+                    case 10:
                         exit = true;
                         System.out.println("Thank you! Exiting the system.");
                         break;
