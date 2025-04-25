@@ -18,7 +18,6 @@ public class LibraryController {
         UserService userService = new UserService(userRepo);
         LibrarianService librarianService = new LibrarianService(librarianRepo);
 
-
         System.out.println("--- Librarian Registration ---");
         System.out.print("Enter Librarian Name: ");
         String libName = sc.nextLine();
@@ -27,7 +26,6 @@ public class LibraryController {
         System.out.print("Enter Password: ");
         String libPass = sc.nextLine();
         librarianService.addLibrarian(new Librarian(libName, libId, libPass));
-
 
         System.out.println("\n--- Librarian Login ---");
         System.out.print("Enter ID: ");
@@ -47,7 +45,9 @@ public class LibraryController {
                 System.out.println("4. Show All Books");
                 System.out.println("5. Search Book by ISBN");
                 System.out.println("6. Delete Book");
-                System.out.println("7. Exit");
+                System.out.println("7. Issue book");
+                System.out.println("8. Return book");
+                System.out.println("9. Exit");
                 System.out.print("Enter your choice: ");
                 int choice = sc.nextInt();
                 sc.nextLine();
@@ -119,6 +119,25 @@ public class LibraryController {
                         break;
 
                     case 7:
+                        System.out.print("Enter ISBN to Issue: ");
+                        String issueIsbn = sc.nextLine();
+                        System.out.print("Enter User ID: ");
+                        String userId = sc.nextLine();
+                        boolean issued = bookService.issueBook(issueIsbn, userId);
+                        if (issued) {
+                            System.out.println("Book issued successfully to user ID: " + userId);
+                        } else {
+                            System.out.println("Book not available.");
+                        }
+                        break;
+                    case 8:
+                        System.out.print("Enter ISBN to Return: ");
+                        String returnIsbn = sc.nextLine();
+                        bookService.returnBook(returnIsbn);
+                        System.out.println("Book returned successfully.");
+                        break;
+
+                    case 9:
                         exit = true;
                         System.out.println("Thank you! Exiting the system.");
                         break;

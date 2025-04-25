@@ -43,8 +43,21 @@ public class Book {
         this.quantity = quantity;
     }
 
-    public void showDetails() {
-        System.out.println("Title: " + title + ", Author: " + author +
-                           ", ISBN: " + isbn + ", Quantity: " + quantity);
-    }
+    private String issuedTo = null; // userId of the person who issued the book
+
+public String getIssuedTo() {
+    return issuedTo;
+}
+
+public void setIssuedTo(String issuedTo) {
+    this.issuedTo = issuedTo;
+}
+
+
+public void showDetails() {
+    System.out.println("Title: " + title + ", Author: " + author + ", ISBN: " + isbn
+             + ", Quantity: " + quantity +
+            (issuedTo != null ? ", Issued To: " + issuedTo : ""));
+}
+
 }
