@@ -10,9 +10,19 @@ public class BookRepository {
         Book existing = searchBookByISBN(book.getIsbn());
         if (existing != null) {
              // Increase quantity if book already exists
+            if(!existing.getTitle().equals(book.getTitle())) {
+                System.out.println("Book with same ISBN but different title already exists.");
+                return;
+            }
+            if(!existing.getAuthor().equals(book.getAuthor())) {
+                System.out.println("Book with same ISBN but different author already exists.");
+                return;
+            }
             existing.increaseQuantity(existing.getQuantity());
+            System.out.println("Book quantity increased successfully.");
         } else {
             books[count++] = book;
+            System.out.println("Book added successfully.");
         }
     }
 

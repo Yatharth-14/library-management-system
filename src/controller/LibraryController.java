@@ -86,7 +86,7 @@ public class LibraryController {
                         // System.out.print("Enter quantity: ");
                         // int quantity = sc.nextInt();
                         bookService.addBook(new Book(title, author, isbn, 1));
-                        System.out.println("Book added successfully.");
+                        // System.out.println("Book added successfully.");
                         break;
 
                     case 4:
