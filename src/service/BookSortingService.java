@@ -1,26 +1,49 @@
 package service;
 
 import entity.Book;
+import repository.BookRepository;
 
-import java.util.*;
+import java.util.Comparator;
 
 public class BookSortingService {
 
-    public static List<Book> sortByRating(List<Book> books) {
-        List<Book> sorted = new ArrayList<>(books); // clone list
-        sorted.sort(Comparator.comparingDouble(Book::getRating).reversed());
-        return sorted;
+    private BookRepository bookRepository;
+
+    public BookSortingService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
-    public static List<Book> sortByIsbn(List<Book> books) {
-        List<Book> sorted = new ArrayList<>(books);
-        sorted.sort(Comparator.comparing(Book::getIsbn));
-        return sorted;
+    private Book[] getBooks() {
+        return bookRepository.getAllBooks(); // Directly get the books array
     }
 
-    public static List<Book> sortByQuantity(List<Book> books) {
-        List<Book> sorted = new ArrayList<>(books);
-        sorted.sort(Comparator.comparingInt(Book::getQuantity).reversed());
-        return sorted;
+    // Sort books by Rating (Descending)
+    public Book[] sortByRating() {
+        Book[] books = getBooks();
+        if (books != null) {
+            // Using Comparator with lambda to sort by rating (descending)
+            java.util.Arrays.sort(books, (b1, b2) -> Double.compare(b2.getRating(), b1.getRating()));
+        }
+        return books;
+    }
+
+    // Sort books by ISBN (Ascending)
+    public Book[] sortByIsbn() {
+        Book[] books = getBooks();
+        if (books != null) {
+            // Sorting by ISBN in ascending order
+            java.util.Arrays.sort(books, Comparator.comparing(Book::getIsbn));
+        }
+        return books;
+    }
+
+    // Sort books by Quantity (Descending)
+    public Book[] sortByQuantity() {
+        Book[] books = getBooks();
+        if (books != null) {
+            // Sorting by quantity in descending order
+            java.util.Arrays.sort(books, (b1, b2) -> Integer.compare(b2.getQuantity(), b1.getQuantity()));
+        }
+        return books;
     }
 }

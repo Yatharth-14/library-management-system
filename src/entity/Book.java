@@ -5,12 +5,14 @@ public class Book {
     private String author;
     private String isbn;
     private int  quantity;
+    private double rating;
 
-    public Book(String title, String author, String isbn, int quantity) {
+    public Book(String title, String author, String isbn, int quantity, double rating) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.quantity = quantity;
+        this.rating=rating;
     }
 
     // public Book(String title2, String author2, String isbn2, String publisher2) {
@@ -39,6 +41,10 @@ public class Book {
         return quantity;
     }
 
+    public double getRating() {
+        return rating;
+    }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
@@ -56,7 +62,7 @@ public void setIssuedTo(String issuedTo) {
 
 public void showDetails() {
     System.out.println("Title: " + title + ", Author: " + author + ", ISBN: " + isbn
-             + ", Quantity: " + quantity +
+             + ", Quantity: " + quantity + ", Rating: " + rating +
             (issuedTo != null ? ", Issued To: " + issuedTo : ""));
 }
 
