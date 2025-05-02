@@ -4,6 +4,7 @@ import entity.*;
 import repository.*;
 import service.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class LibraryController {
@@ -48,7 +49,10 @@ public class LibraryController {
                 System.out.println("7. Issue book");
                 System.out.println("8. Return book");
                 System.out.println("9. Show All users");
-                System.out.println("10. Exit");
+                System.out.println("10. Sort Books by Rating");
+                System.out.println("11. Sort Books by ISBN");
+                System.out.println("12. Sort Books by Quantity");
+                System.out.println("13. Exit");
                 System.out.print("Enter your choice: ");
                 int choice = sc.nextInt();
                 sc.nextLine();
@@ -83,9 +87,11 @@ public class LibraryController {
                         String author = sc.nextLine();
                         System.out.print("Enter ISBN: ");
                         String isbn = sc.nextLine();
+                        System.out.print("Enter Book Rating: ");
+                        double rating = sc.nextDouble();
                         // System.out.print("Enter quantity: ");
                         // int quantity = sc.nextInt();
-                        bookService.addBook(new Book(title, author, isbn, 1));
+                        bookService.addBook(new Book(title, author, isbn, 1, rating));
                         // System.out.println("Book added successfully.");
                         break;
 
@@ -146,6 +152,30 @@ public class LibraryController {
                         break;
 
                     case 10:
+                        Book[] sortedByRating = BookSortingService.sortByRating(bookService.getAllBooks());
+                        System.out.println("--- Books Sorted by Rating ---");
+                        for (Book b : sortedByRating) {
+                            b.showDetails();
+                        }
+                        break;
+
+                    case 11:
+                        List<Book> sortedByIsbn = BookSortingService.sortByIsbn(bookService.getAllBooks());
+                        System.out.println("--- Books Sorted by ISBN ---");
+                        for (Book b : sortedByIsbn) {
+                            b.showDetails();
+                        }
+                        break;
+
+                    case 12:
+                        List<Book> sortedByQuantity = BookSortingService.sortByQuantity(bookService.getAllBooks());
+                        System.out.println("--- Books Sorted by Quantity ---");
+                        for (Book b : sortedByQuantity) {
+                            b.showDetails();
+                        }
+                        break;
+
+                    case 13:
                         exit = true;
                         System.out.println("Thank you! Exiting the system.");
                         break;
